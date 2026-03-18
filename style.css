@@ -34,23 +34,20 @@ body {
   font-family: var(--font-body);
   overflow-x: hidden;
   cursor: none;
+}
+#hero, #histoire, #hype, #billetterie, #acces, #faq, footer, #navbar {
   opacity: 0;
   transition: opacity 0.3s ease;
 }
 
-body.ready {
-  opacity: 1;
-}
-
-#loader {
-  opacity: 1 !important;
-}
-
-#loader-explode {
-  opacity: 0;
-}
-
-#loader-explode.on {
+body.ready #hero,
+body.ready #histoire,
+body.ready #hype,
+body.ready #billetterie,
+body.ready #acces,
+body.ready #faq,
+body.ready footer,
+body.ready #navbar {
   opacity: 1;
 }
 
@@ -218,8 +215,8 @@ body.ready {
   display: flex;
   align-items: center;
   justify-content: center;
-  opacity: 0;
   pointer-events: none;
+  opacity: 0;
   z-index: 10001;
   background: #000;
 }
