@@ -1,0 +1,361 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>10 Ans du Gang — Vano Baby | 04 Avril 2026</title>
+<meta name="description" content="Le concert anniversaire de Vano Baby. 10 ans du Gang. 04 Avril 2026 au Majestic de Wologuèdè, Cotonou.">
+<meta property="og:title" content="10 Ans du Gang — Vano Baby">
+<meta property="og:description" content="04 Avril 2026 · Majestic de Wologuèdè · À partir de 16h">
+<meta property="og:image" content="assets/vano-hibou.webp">
+<meta property="og:type" content="website">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Black+Ops+One&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<!-- CURSOR -->
+<div id="cursor"></div>
+<div id="cursor-ring"></div>
+
+<!-- LOADER -->
+<div id="loader">
+  <div class="grain"></div>
+  <div class="loader-eyes">
+    <div class="loader-eye" id="eL">
+      <div class="loader-iris"></div>
+      <div class="loader-pupil"></div>
+      <div class="loader-glow"></div>
+    </div>
+    <div class="loader-eye" id="eR">
+      <div class="loader-iris"></div>
+      <div class="loader-pupil"></div>
+      <div class="loader-glow"></div>
+    </div>
+  </div>
+  <div id="loader-text"></div>
+</div>
+<div id="loader-explode">
+  <!-- L'image du hibou est injectée dynamiquement par JS -->
+  <img id="loader-owl-img" src="assets/hibou-ia-d.webp" alt="hibou">
+</div>
+
+<!-- NAVBAR -->
+<nav id="navbar">
+  <a href="#hero" class="nav-logo">VANO <span>BABY</span></a>
+  <div class="nav-links">
+    <a href="#histoire">Histoire</a>
+    <a href="#hype">La Hype</a>
+    <a href="#billetterie">Billets</a>
+    <a href="#acces">Accès</a>
+    <a href="#faq">FAQ</a>
+    <a href="#billetterie" class="nav-cta">Prendre mon billet</a>
+  </div>
+  <button id="nav-burger" onclick="toggleMenu()" aria-label="Menu">
+    <span></span><span></span><span></span>
+  </button>
+</nav>
+
+<!-- MENU MOBILE -->
+<div id="mobile-menu">
+  <a href="#histoire" onclick="toggleMenu()">Histoire</a>
+  <a href="#hype" onclick="toggleMenu()">La Hype</a>
+  <a href="#billetterie" onclick="toggleMenu()">Billets</a>
+  <a href="#acces" onclick="toggleMenu()">Accès</a>
+  <a href="#faq" onclick="toggleMenu()">FAQ</a>
+  <a href="#billetterie" class="nav-cta" onclick="toggleMenu()">Prendre mon billet</a>
+</div>
+
+<!-- ==================== HERO ==================== -->
+<section id="hero">
+  <div class="grain"></div>
+
+  <!-- Hibou IA en watermark background -->
+  <!-- REMPLACE src par ton image : assets/hibou-ia.webp -->
+  <img class="hero-hibou-bg" src="assets/hibou-ia-d.webp" alt="" aria-hidden="true" width="700" height="700">
+
+  <div class="hero-content">
+    <div class="hero-eyebrow reveal">Concert Anniversaire · Cotonou</div>
+    <h1 class="hero-title reveal" style="transition-delay:0.1s">
+      10 ANS<br><span class="rouge">DU GANG</span>
+    </h1>
+    <p class="hero-subtitle reveal" style="transition-delay:0.2s">
+      <strong>Vano Baby</strong> · Concert Live<br>
+      <strong>04 Avril 2026</strong> · Majestic de Wologuèdè · <strong>16h</strong>
+    </p>
+
+    <!-- COMPTE À REBOURS -->
+    <div class="countdown reveal" style="transition-delay:0.3s" id="countdown">
+      <div class="cd-block"><span class="cd-num" id="cd-j">--</span><span class="cd-label">Jours</span></div>
+      <div class="cd-sep">:</div>
+      <div class="cd-block"><span class="cd-num" id="cd-h">--</span><span class="cd-label">Heures</span></div>
+      <div class="cd-sep">:</div>
+      <div class="cd-block"><span class="cd-num" id="cd-m">--</span><span class="cd-label">Minutes</span></div>
+      <div class="cd-sep">:</div>
+      <div class="cd-block"><span class="cd-num" id="cd-s">--</span><span class="cd-label">Secondes</span></div>
+    </div>
+
+    <div class="hero-ctas reveal" style="transition-delay:0.4s">
+      <a href="#billetterie" class="btn-primary">Prendre mon billet</a>
+      <a href="#histoire" class="btn-outline">Découvrir</a>
+    </div>
+  </div>
+
+  <!-- Photo principale Vano Baby -->
+  <!-- REMPLACE src par ton image : assets/vano-hibou.webp -->
+  <img class="hero-vano" src="assets/vano-hibou.webp" alt="Vano Baby" width="580" height="580" fetchpriority="high">
+</section>
+
+<!-- ==================== HISTOIRE ==================== -->
+<section id="histoire">
+  <div class="grain"></div>
+
+  <!-- Photo scène en background -->
+  <!-- REMPLACE src par ton image : assets/vano-scene.webp -->
+  <img class="histoire-bg" src="assets/vano-scene.webp" alt="" aria-hidden="true" width="800" height="960" loading="lazy">
+
+  <p class="section-eyebrow reveal">L'artiste & l'histoire</p>
+  <h2 class="section-title reveal" style="transition-delay:0.1s">UNE <span>DÉCENNIE</span><br>DE LÉGENDE</h2>
+
+  <!-- IDENTITÉ — 3 CARDS -->
+  <div class="identite-cards">
+    <div class="id-card reveal">
+      <div class="id-card-icon">Origine</div>
+      <div class="id-card-title">Né à Cotonou</div>
+      <div class="id-card-text">Aurel Sylvanus Adjivon, originaire de Grand-Popo. Il grandit dans les rues de Cotonou et en fait sa première scène, bien avant les projecteurs.</div>
+    </div>
+    <div class="id-card reveal" style="transition-delay:0.1s">
+      <div class="id-card-icon">Univers musical</div>
+      <div class="id-card-title">Rap × Fon × Afro</div>
+      <div class="id-card-text">Un mélange unique de rap, d'afro-urbanité et de langue fon. Une identité sonore qu'on ne peut ni copier ni oublier. Sa voix, c'est celle d'une génération.</div>
+    </div>
+    <div class="id-card reveal" style="transition-delay:0.2s">
+      <div class="id-card-icon">Alias</div>
+      <div class="id-card-title">Azéto Gbèdé</div>
+      <div class="id-card-text">Le Sorcier Vivant. Un surnom qui résume tout : mystérieux, puissant, inclassable. Un personnage que personne n'a demandé mais que tout le monde attendait.</div>
+    </div>
+  </div>
+
+  <!-- 3 PILIERS -->
+  <p class="section-eyebrow reveal">Pourquoi il a explosé</p>
+  <div class="piliers">
+    <div class="pilier reveal">
+      <div class="pilier-num">01</div>
+      <div class="pilier-title">Un personnage assumé</div>
+      <div class="pilier-text">Dès ses débuts, Vano Baby adopte une posture crue, insolente, presque irrévérencieuse. Il a compris avant tout le monde que dans un marché peu structuré, c'est l'attitude qui crée la différence — avant même la musique. Personne ne pouvait l'ignorer.</div>
+    </div>
+    <div class="pilier reveal" style="transition-delay:0.1s">
+      <div class="pilier-num">02</div>
+      <div class="pilier-title">La langue Fon comme arme</div>
+      <div class="pilier-text">Là où beaucoup cherchaient l'universel via le français, lui a fait le choix inverse : chanter dans la langue de son peuple. Ce pari audacieux lui a offert une connexion directe, profonde, et impossible à imiter avec le public béninois.</div>
+    </div>
+    <div class="pilier reveal" style="transition-delay:0.2s">
+      <div class="pilier-num">03</div>
+      <div class="pilier-title">Une productivité constante</div>
+      <div class="pilier-text">Il n'a pas attendu un album pour exister. Il a construit sa notoriété single après single, traitant chaque sortie comme un mini-événement. Résultat : impossible de passer un trimestre sans entendre parler de Vano Baby.</div>
+    </div>
+  </div>
+
+  <!-- ÉVOLUTION -->
+  <p class="section-eyebrow reveal">L'évolution</p>
+  <div class="evolution-block reveal">
+    <div class="evolution-text">
+      <p>Ses premières années sont marquées par des titres polémiques, viraux, très orientés rue. Une musique brute, directe, qui dérange autant qu'elle fascine. Il est l'enfant terrible que la scène béninoise ne savait pas qu'elle attendait.</p>
+      <p>Puis vient la maturité. Plus de mélodie, plus de storytelling, moins de provocation gratuite — et davantage de dimension humaine. Cette transition est rare dans le game : beaucoup perdent leur public en changeant. Lui l'a agrandi.</p>
+      <p>Aujourd'hui, Vano Baby n'est plus seulement un artiste. C'est une institution. Une référence. Une preuve que la constance, sur dix ans, finit toujours par devenir de la légende.</p>
+    </div>
+    <!-- REMPLACE src par ton image : assets/vano-rose.webp -->
+    <img class="evolution-img" src="assets/vano-rose.webp" alt="Vano Baby" loading="lazy" width="400" height="280">
+  </div>
+
+  <!-- STATS -->
+  <div class="stats-row">
+    <div class="stat-item reveal">
+      <span class="stat-num"><span class="count-up" data-target="10">0</span><span style="color:var(--rouge)"> ANS</span></span>
+      <span class="stat-label">De carrière</span>
+    </div>
+    <div class="stat-item reveal" style="transition-delay:0.1s">
+      <span class="stat-num"><span class="count-up" data-target="3">0</span><span style="color:var(--rouge)">×</span></span>
+      <span class="stat-label">Artiste de l'année</span>
+    </div>
+    <div class="stat-item reveal" style="transition-delay:0.2s">
+      <span class="stat-num"><span class="count-up" data-target="78">0</span><span style="color:var(--rouge)">.3M</span></span>
+      <span class="stat-label">Vues cumulées</span>
+    </div>
+    <div class="stat-item reveal" style="transition-delay:0.3s">
+      <span class="stat-num"><span class="count-up" data-target="2">0</span><span style="color:var(--rouge)"> EU</span></span>
+      <span class="stat-label">Tournées Europe</span>
+    </div>
+  </div>
+
+  <!-- TIMELINE -->
+  <p class="section-eyebrow reveal" style="margin-top:48px">La timeline</p>
+  <h3 class="section-title reveal" style="font-size:clamp(24px,4vw,40px);transition-delay:0.1s">10 ANS, <span>ÉTAPE PAR ÉTAPE</span></h3>
+  <div class="timeline" id="timeline"></div>
+
+  <!-- TRANSFORMATIONS -->
+  <div class="transformation reveal">
+    <h3 class="transfo-title">En 10 ans, il est passé :</h3>
+    <div class="transfo-row reveal"><span class="transfo-from">Jeune provocateur</span><span class="transfo-arrow">→</span><span class="transfo-to">Figure nationale</span></div>
+    <div class="transfo-row reveal" style="transition-delay:0.1s"><span class="transfo-from">Buzz viral</span><span class="transfo-arrow">→</span><span class="transfo-to">Reconnaissance institutionnelle</span></div>
+    <div class="transfo-row reveal" style="transition-delay:0.2s"><span class="transfo-from">Rap cru</span><span class="transfo-arrow">→</span><span class="transfo-to">Identité artistique solide</span></div>
+    <div class="transfo-row reveal" style="transition-delay:0.3s"><span class="transfo-from">La rue</span><span class="transfo-arrow">→</span><span class="transfo-to">Les scènes internationales</span></div>
+    <div class="transfo-row reveal" style="transition-delay:0.4s"><span class="transfo-from">Simple artiste</span><span class="transfo-arrow">→</span><span class="transfo-to">Marque culturelle béninoise</span></div>
+  </div>
+</section>
+
+<!-- ==================== HYPE ==================== -->
+<section id="hype">
+  <div class="grain"></div>
+  <p class="section-eyebrow reveal">La hype</p>
+  <h2 class="section-title reveal" style="transition-delay:0.1s">LE GANG <span>PARLE</span></h2>
+  <div class="hype-grid">
+    <div class="phone-wrap reveal">
+      <div class="phone-frame">
+        <div class="phone-notch"></div>
+          <video class="phone-video" id="fanVideo" loop playsinline preload="none" onclick="toggleVideo()">
+            <source src="assets/fan-video.mp4" type="video/mp4">
+          </video>
+          <div class="play-btn" id="playBtn" onclick="toggleVideo()">▶</div>
+        <div class="phone-bar"></div>
+      </div>
+    </div>
+    <div class="hype-right">
+      <p class="hype-phrase reveal">"Dans 10 ans,<br>tu diras que tu <span>y étais.</span>"</p>
+      <div class="hype-stats">
+        <div class="hype-stat reveal">
+          <span class="hype-stat-num"><span class="count-up" data-target="4">0</span>.8M</span>
+          <span class="hype-stat-label">vues sur Fitè — son dernier single<br>qui a mis tout le Bénin en transe</span>
+        </div>
+        <div class="hype-stat reveal" style="transition-delay:0.1s">
+          <span class="hype-stat-num"><span class="count-up" data-target="3">0</span>×</span>
+          <span class="hype-stat-label">Meilleur artiste de l'année aux<br>Bénin Top 10 Awards — consécutif</span>
+        </div>
+        <div class="hype-stat reveal" style="transition-delay:0.2s">
+          <span class="hype-stat-num"><span class="count-up" data-target="10">0</span></span>
+          <span class="hype-stat-label">ans de présence constante,<br>de réinvention et de domination</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ==================== BILLETTERIE ==================== -->
+<section id="billetterie">
+  <div class="grain"></div>
+  <p class="section-eyebrow reveal">Billetterie officielle</p>
+  <h2 class="section-title reveal" style="transition-delay:0.1s">TES <span>PLACES</span></h2>
+  <p class="billet-sub reveal" style="transition-delay:0.2s">04 Avril 2026 · Majestic de Wologuèdè · À partir de 16h</p>
+  <div class="tickets-grid" id="ticketsGrid"></div>
+  <div class="billet-divider"></div>
+  <div class="total-row">
+    <div>
+      <p class="total-lbl">Total</p>
+      <p class="total-amount" id="totalAmount">0 FCFA</p>
+      <p class="total-count" id="totalCount">Aucune place sélectionnée</p>
+    </div>
+  </div>
+  <button class="cta-ticket" id="ctaBtn" onclick="openModal()">Choisir mes places</button>
+  <p class="billet-note">Paiement sécurisé · Confirmation par email · Places nominatives<br>Les billets sont disponibles en quantité limitée</p>
+</section>
+
+<!-- MODAL RÉCAPITULATIF -->
+<div id="modal">
+  <div class="modal-box">
+    <button class="modal-close" onclick="closeModal()">✕</button>
+    <h3 class="modal-title">RÉCAPITULATIF</h3>
+    <div id="modal-content"></div>
+  </div>
+</div>
+
+<!-- ==================== ACCÈS ==================== -->
+<section id="acces">
+  <div class="grain"></div>
+  <p class="section-eyebrow reveal">Accès & infos pratiques</p>
+  <h2 class="section-title reveal" style="transition-delay:0.1s">COMMENT <span>VENIR</span></h2>
+
+  <div class="acces-top">
+    <div class="acces-info reveal">
+      <div class="acces-info-lbl">Date</div>
+      <div class="acces-info-val"><span>04 Avril</span> 2026</div>
+    </div>
+    <div class="acces-info reveal" style="transition-delay:0.1s">
+      <div class="acces-info-lbl">Lieu</div>
+      <div class="acces-info-val">Majestic de<br><span>Wologuèdè</span></div>
+    </div>
+    <div class="acces-info reveal" style="transition-delay:0.2s">
+      <div class="acces-info-lbl">Heure</div>
+      <div class="acces-info-val">À partir de <span>16h00</span></div>
+    </div>
+  </div>
+
+  <div class="acces-grid">
+    <div>
+      <div class="acces-map reveal">
+        <!-- Google Maps lazy load — src injecté par JS au scroll -->
+        <iframe
+          id="mapFrame"
+          data-src="https://maps.google.com/maps?q=Canal+Olympia+Wologuede+Cotonou&output=embed"
+          title="Majestic de Wologuèdè"
+          loading="lazy"
+          allowfullscreen>
+        </iframe>
+      </div>
+      <div class="acces-adresse reveal">
+        <span>Majestic de Wologuèdè (ex Canal Olympia), Cotonou, Bénin</span>
+        <button class="copy-btn" onclick="copyAdresse()">Copier</button>
+      </div>
+    </div>
+    <div class="acces-cards">
+      <div class="acces-card reveal">
+        <span class="acces-card-icon">🚗</span>
+        <div><div class="acces-card-title">Parking</div><div class="acces-card-text">Un parking est disponible sur place et aux abords du Majestic. Prévois d'arriver tôt pour trouver facilement une place.</div></div>
+      </div>
+      <div class="acces-card reveal" style="transition-delay:0.1s">
+        <span class="acces-card-icon">🛵</span>
+        <div><div class="acces-card-title">Zémidjan & taxi</div><div class="acces-card-text">Le site est facilement accessible en zemidjan ou taxi depuis le centre-ville de Cotonou. Prévoir un itinéraire en avance.</div></div>
+      </div>
+      <div class="acces-card reveal" style="transition-delay:0.2s">
+        <span class="acces-card-icon">👗</span>
+        <div><div class="acces-card-title">Tenue</div><div class="acces-card-text">Tenue correcte exigée. L'événement est festif — viens à ton meilleur niveau. Le Gang a du style.</div></div>
+      </div>
+      <div class="acces-card reveal" style="transition-delay:0.3s">
+        <span class="acces-card-icon">🍔</span>
+        <div><div class="acces-card-title">Restauration</div><div class="acces-card-text">De la restauration et des boissons seront disponibles sur place. Pas besoin de prévoir à manger avant de venir.</div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ==================== FAQ ==================== -->
+<section id="faq">
+  <div class="grain"></div>
+  <p class="section-eyebrow reveal">Questions fréquentes</p>
+  <h2 class="section-title reveal" style="transition-delay:0.1s">ON <span>RÉPOND</span></h2>
+  <div class="faq-list" id="faqList"></div>
+</section>
+
+<!-- ==================== FOOTER ==================== -->
+<footer>
+  <div class="footer-top">
+    <div>
+      <div class="footer-logo">VANO <span>BABY</span></div>
+      <div class="footer-event">10 Ans du Gang · Concert Live · 04 Avril 2026</div>
+    </div>
+    <div class="footer-social">
+      <a href="https://www.facebook.com/vanobaby229" target="_blank" rel="noopener" title="Facebook">f</a>
+      <a href="https://www.instagram.com/vanobaby229" target="_blank" rel="noopener" title="Instagram">in</a>
+      <a href="https://www.youtube.com/@vanobaby229" target="_blank" rel="noopener" title="YouTube">▶</a>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <span class="footer-legal">© 2026 Vano Baby — Tous droits réservés</span>
+    <span class="footer-hibou">🦉 Le Gang. Toujours.</span>
+  </div>
+</footer>
+
+<script src="script.js" defer></script>
+</body>
+</html>
