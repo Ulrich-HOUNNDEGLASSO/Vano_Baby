@@ -6,15 +6,7 @@
   padding: 0;
   box-sizing: border-box;
 }
-body {
-  visibility: hidden;
-  opacity: 0;
-  transition: opacity 0.3s ease;
-}
-body.ready {
-  visibility: visible;
-  opacity: 1;
-}
+
 
 :root {
   --rouge: #CC0000;
@@ -42,6 +34,24 @@ body {
   font-family: var(--font-body);
   overflow-x: hidden;
   cursor: none;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+body.ready {
+  opacity: 1;
+}
+
+#loader {
+  opacity: 1 !important;
+}
+
+#loader-explode {
+  opacity: 0;
+}
+
+#loader-explode.on {
+  opacity: 1;
 }
 
 
@@ -498,12 +508,15 @@ section {
   position: absolute;
   right: 0;
   bottom: 0;
-  width: clamp(280px, 42vw, 580px);
+  width: clamp(340px, 50vw, 680px);
   height: 100%;
+  object-fit: cover;
+  object-position: center top;
   z-index: 2;
-  object-fit: contain;
-  object-position: bottom;
-  opacity: 100%;
+  mix-blend-mode: screen;
+  filter: contrast(1.2) brightness(0.85) grayscale(20%);
+  /* mask-image: linear-gradient(to left, rgba(0,0,0,0.85) 40%, transparent 100%);
+  -webkit-mask-image: linear-gradient(to left, rgba(0,0,0,0.85) 40%, transparent 100%); */
 }
 
 /* ===== HISTOIRE ===== */
@@ -1221,7 +1234,13 @@ footer {
   .hero-title { font-size: clamp(42px, 12vw, 70px); }
   .countdown { gap: 12px; }
   .cd-sep { display: none; }
-  .hero-vano { opacity: 0.3; width: 100%; object-position: top right; }
+  .hero-vano {
+    width: 100%;
+    height: 70%;
+    bottom: 0;
+    object-position: center top;
+    opacity: 0.25;
+  }
   .hero-content { max-width: 100%; }
   .ticket-top { flex-direction: column; align-items: flex-start; gap: 12px; }
   .ticket-subtotal { min-width: auto; }

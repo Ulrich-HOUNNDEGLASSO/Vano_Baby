@@ -20,7 +20,7 @@ document.querySelectorAll('a, button, .qty-btn').forEach(el => {
 });
 
 /* ===== UTILITAIRES ===== */
-const sleep = ms => new Promise(resolve => setTimeout(resolve, ms));
+const sleep = ms => new Promise(r => setTimeout(r, ms));
 
 /* ===== LOADER ===== */
 async function animEyes() {
