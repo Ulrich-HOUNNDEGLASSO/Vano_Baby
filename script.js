@@ -142,7 +142,7 @@ function toggleMenu() {
 
 /* ===== COMPTE À REBOURS ===== */
 function updateCountdown() {
-  const target = new Date('2026-04-04T16:00:00').getTime();
+  const target = new Date('2026-04-04T15:00:00Z').getTime();
   const diff   = target - Date.now();
 
   if (diff <= 0) {async
