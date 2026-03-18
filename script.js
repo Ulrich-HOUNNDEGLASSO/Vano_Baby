@@ -203,20 +203,31 @@ function initCountUp() {
 
 /* ===== TIMELINE ===== */
 const TL_DATA = [
-  { year: '2013', title: "L'entrée dans l'arène",          text: "Premier single marquant : Drague Azonto. Vano se fait remarquer par son énergie brute, son audace et son côté enfant terrible du rap béninois. La naissance d'un personnage.",                                                                         featured: false },
-  { year: '2014', title: "La confirmation",                 text: "Il remporte le 1er prix du concours MTN Découverte Talents. Visibilité, crédibilité, ressources. Son premier vrai tampon professionnel dans l'industrie.",                                                                                                   featured: false },
-  { year: '2015', title: "La consolidation dans la rue",    text: "Performances, collaborations locales, petits concerts. Son nom circule partout dans les quartiers. Sa fanbase street se densifie semaine après semaine.",                                                                                                     featured: false },
-  { year: '2016', title: "Le premier vrai hit",             text: "Adigoue Gboun Gboun devient un phénomène national. La posture provocatrice et la langue fon prennent le devant. Le public comprend : il n'est pas comme les autres.",                                                                                        featured: false },
-  { year: '2017', title: "L'installation du personnage",    text: "Figure récurrente du rap béninois. Multiples singles, premiers buzz viraux. Le début du mythe Azéto Gbèdé, le Sorcier Vivant.",                                                                                                                              featured: false },
-  { year: '2018', title: "Le passage au mainstream",        text: "Morceaux plus accessibles, plus mélodiques. Il commence à toucher un public plus large, au-delà du rap pur. Les radios le diffusent largement.",                                                                                                             featured: false },
-  { year: '2019', title: "Le rappeur impossible à ignorer", text: "Présence constante. Chaque single est un événement. Il accumule visibilité, showcases et collaborations. Son personnage s'affine : provocateur mais maîtrisé.",                                                                                               featured: false },
-  { year: '2020', title: "La maturité artistique",          text: "Moins de vulgarité, plus de structure. La langue fon devient un atout pleinement assumé. Il se positionne comme ambassadeur culturel malgré lui.",                                                                                                           featured: false },
-  { year: '2021', title: "Première consécration",           text: "Meilleur artiste de l'année aux Bénin Top 10 Awards. Il passe de star populaire à star reconnue. Un tournant dans sa carrière.",                                                                                                                             featured: false },
-  { year: '2022', title: "Domination & ambassadeur Celtiis",text: "Encore Meilleur artiste de l'année. Personne ne peut nier son impact. Il devient ambassadeur de la marque Celtiis : son image dépasse désormais la musique.",                                                                                                 featured: false },
-  { year: '2023', title: "La trajectoire internationale",   text: "Tournées en Europe : Suisse, Italie. Il teste son potentiel hors du Bénin. Le public expatrié béninois adhère fortement.",                                                                                                                                   featured: false },
-  { year: '2024', title: "L'installation définitive",       text: "Encore Meilleur artiste de l'année. À ce stade, il n'est plus seulement un artiste : c'est une institution de la musique urbaine béninoise.",                                                                                                                featured: false },
-  { year: '2025', title: "10 ANS DU GANG — Le couronnement",text: "Dix ans de présence, de réinvention et de constance. Il organise un concert-anniversaire historique. Son nom remplit le game : la décennie prouve que son impact n'est pas un hasard.",                                                                      featured: true  },
+  { year: '2016', title: "Le premier vrai hit",           text: "Adigoue Gboun Gboun devient un phénomène national. La posture provocatrice et la langue fon prennent le devant. Le public comprend : il n'est pas comme les autres.",                                featured: false },
+  { year: '2017', title: "L'installation du personnage",  text: "Figure récurrente du rap béninois. Multiples singles, premiers buzz viraux. Le début du mythe Azéto Gbèdé, le Sorcier Vivant.",                                                                      featured: false },
+  { year: '2018', title: "Le passage au mainstream",      text: "Morceaux plus accessibles, plus mélodiques. Il commence à toucher un public plus large, au-delà du rap pur. Les radios le diffusent largement.",                                                      featured: false },
+  { year: '2019', title: "Impossible à ignorer",          text: "Présence constante. Chaque single est un événement. Il accumule visibilité, showcases et collaborations. Son personnage s'affine : provocateur mais maîtrisé.",                                        featured: false },
+  { year: '2020', title: "La maturité artistique",        text: "Moins de vulgarité, plus de structure. La langue fon devient un atout pleinement assumé. Il se positionne comme ambassadeur culturel malgré lui.",                                                    featured: false },
+  { year: '2021', title: "Première consécration",         text: "Meilleur artiste de l'année aux Bénin Top 10 Awards. Il passe de star populaire à star reconnue. Un tournant dans sa carrière.",                                                                      featured: false },
+  { year: '2022', title: "Domination & ambassadeur",      text: "Encore Meilleur artiste de l'année. Il devient ambassadeur de la marque Celtiis : son image dépasse désormais la musique.",                                                                           featured: false },
+  { year: '2023', title: "La trajectoire internationale", text: "Tournées en Europe : Suisse, Italie. Il teste son potentiel hors du Bénin. Le public expatrié béninois adhère fortement.",                                                                            featured: false },
+  { year: '2024', title: "L'installation définitive",     text: "Encore Meilleur artiste de l'année. À ce stade, il n'est plus seulement un artiste : c'est une institution de la musique urbaine béninoise.",                                                         featured: false },
+  { year: '2026', title: "10 ANS DU GANG — Le couronnement", text: "04 Avril 2026. Majestic de Wologuèdè. Dix ans de présence, de réinvention et de constance. Un concert-anniversaire historique que Cotonou n'oubliera jamais.",                                    featured: true  },
 ];
+
+/* ============================================================
+   CORRECTIONS À APPORTER DANS script.js
+   ============================================================
+
+   ÉTAPE 1 — Dans index.html, après la div #timeline, ajoute :
+
+   <div id="timeline-mobile"></div>
+
+   ============================================================
+
+   ÉTAPE 2 — Dans script.js, remplace la fonction buildTimeline()
+   entière par le code ci-dessous
+   ============================================================ */
 
 function buildTimeline() {
   const tl = document.getElementById('timeline');
@@ -239,6 +250,157 @@ function buildTimeline() {
       <div class="tl-right ${!isLeft ? 'reveal-right' : ''}">${!isLeft ? content : ''}</div>`;
 
     tl.appendChild(div);
+  });
+
+  /* Timeline mobile serpentin */
+  buildTimelineMobile();
+  window.addEventListener('resize', buildTimelineMobile);
+}
+
+function buildTimelineMobile() {
+  const container = document.getElementById('timeline-mobile');
+  if (!container) return;
+
+  /* Seulement sur mobile */
+  if (window.innerWidth > 900) {
+    container.innerHTML = '';
+    return;
+  }
+
+  const W       = container.offsetWidth || window.innerWidth - 40;
+  const dpr     = window.devicePixelRatio || 1;
+
+  /* Layout */
+  const ENTRY_H    = 92;
+  const MARGIN_TOP = 24;
+  const MARGIN_BOT = 24;
+  const TOTAL_H    = MARGIN_TOP + TL_DATA.length * ENTRY_H + MARGIN_BOT;
+
+  /* Positions X des sommets : alternance gauche / droite */
+  const SIDE_PAD = 16;
+  const TEXT_W   = W * 0.42;
+  const DOT_R    = 8;
+  const GAP      = 12;
+
+  /* leftX / rightX = position X du point au sommet de la courbe */
+  const leftX  = SIDE_PAD + TEXT_W + GAP + DOT_R;
+  const rightX = W - SIDE_PAD - TEXT_W - GAP - DOT_R;
+
+  /* Canvas */
+  container.innerHTML = '';
+  const canvas    = document.createElement('canvas');
+  canvas.width    = W * dpr;
+  canvas.height   = TOTAL_H * dpr;
+  canvas.style.width  = W + 'px';
+  canvas.style.height = TOTAL_H + 'px';
+  container.appendChild(canvas);
+
+  const ctx = canvas.getContext('2d');
+  ctx.scale(dpr, dpr);
+  ctx.clearRect(0, 0, W, TOTAL_H);
+
+  /* Points (sommet de chaque courbe) */
+  const points = TL_DATA.map((d, i) => ({
+    x      : i % 2 === 0 ? leftX : rightX,
+    y      : MARGIN_TOP + i * ENTRY_H + ENTRY_H / 2,
+    isLeft : i % 2 === 0,
+    ...d
+  }));
+
+  /* ===== LIGNE SERPENTINE ===== */
+  ctx.beginPath();
+  ctx.moveTo(points[0].x, points[0].y);
+
+  for (let i = 0; i < points.length - 1; i++) {
+    const p1 = points[i];
+    const p2 = points[i + 1];
+    ctx.bezierCurveTo(
+      p1.x, p1.y + ENTRY_H * 0.55,
+      p2.x, p2.y - ENTRY_H * 0.55,
+      p2.x, p2.y
+    );
+  }
+
+  ctx.strokeStyle = 'rgba(204, 0, 0, 0.55)';
+  ctx.lineWidth   = 1.5;
+  ctx.setLineDash([5, 4]);
+  ctx.stroke();
+  ctx.setLineDash([]);
+
+  /* ===== POINTS + TEXTES ===== */
+  points.forEach(p => {
+
+    /* Halo featured */
+    if (p.featured) {
+      ctx.beginPath();
+      ctx.arc(p.x, p.y, DOT_R + 6, 0, Math.PI * 2);
+      ctx.fillStyle = 'rgba(204, 0, 0, 0.18)';
+      ctx.fill();
+    }
+
+    /* Point rouge */
+    ctx.beginPath();
+    ctx.arc(p.x, p.y, DOT_R, 0, Math.PI * 2);
+    ctx.fillStyle   = '#CC0000';
+    ctx.strokeStyle = p.featured ? '#ff4040' : '#CC0000';
+    ctx.lineWidth   = p.featured ? 2 : 1.5;
+    ctx.fill();
+    ctx.stroke();
+
+    /* ===== ANNÉE (côté extérieur) ===== */
+    ctx.font         = "bold 12px 'Black Ops One', sans-serif";
+    ctx.fillStyle    = '#CC0000';
+    ctx.textBaseline = 'middle';
+
+    if (p.isLeft) {
+      /* Point à gauche → année encore plus à gauche */
+      ctx.textAlign = 'right';
+      ctx.fillText(p.year, p.x - DOT_R - GAP, p.y);
+    } else {
+      /* Point à droite → année encore plus à droite */
+      ctx.textAlign = 'left';
+      ctx.fillText(p.year, p.x + DOT_R + GAP, p.y);
+    }
+
+    /* ===== TITRE (côté intérieur — dans le creux) ===== */
+    ctx.font      = "12px 'Black Ops One', sans-serif";
+    ctx.fillStyle = p.featured ? '#CC0000' : '#ffffff';
+
+    const textX = p.isLeft
+      ? p.x + DOT_R + GAP        /* texte à droite du point */
+      : p.x - DOT_R - GAP;      /* texte à gauche du point */
+
+    ctx.textAlign    = p.isLeft ? 'left' : 'right';
+    ctx.textBaseline = 'alphabetic';
+
+    /* Découpe le titre si trop long */
+    const maxW = TEXT_W - GAP;
+    ctx.fillText(p.title, textX, p.y - 3, maxW);
+
+    /* ===== SOUS-TITRE ===== */
+    ctx.font      = "11px 'DM Sans', sans-serif";
+    ctx.fillStyle = 'rgba(255,255,255,0.4)';
+    ctx.textBaseline = 'alphabetic';
+
+    /* Wrap manuel sur 2 lignes max */
+    const words   = p.text.split(' ');
+    let line      = '';
+    let lineY     = p.y + 13;
+    let lineCount = 0;
+
+    for (let w = 0; w < words.length; w++) {
+      const test = line + (line ? ' ' : '') + words[w];
+      if (ctx.measureText(test).width > maxW && line !== '') {
+        ctx.fillText(line, textX, lineY);
+        line   = words[w];
+        lineY += 14;
+        lineCount++;
+        if (lineCount >= 2) { ctx.fillText(line + '…', textX, lineY); break; }
+      } else {
+        line = test;
+      }
+    }
+    if (lineCount < 2) ctx.fillText(line, textX, lineY);
   });
 }
 
