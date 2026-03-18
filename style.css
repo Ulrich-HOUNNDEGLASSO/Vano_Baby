@@ -342,7 +342,8 @@ section {
 }
 
 .section-eyebrow {
-  font-size: 11px;
+  font-size: 12px;
+  font-weight: 600;
   letter-spacing: 0.4em;
   text-transform: uppercase;
   color: var(--rouge);
@@ -354,7 +355,7 @@ section {
 .section-eyebrow::before {
   content: '';
   display: block;
-  width: 24px;
+  width: 15px;
   height: 1px;
   background: var(--rouge);
 }
@@ -381,21 +382,7 @@ section {
   padding-top: 68px;
 }
 
-.hero-hibou-bg {
-  position: absolute;
-  right: -4%;
-  top: 50%;
-  transform: translateY(-56%);
-  width: clamp(300px, 55vw, 700px);
-  height: auto;
-  opacity: 25%;
-  z-index: 1;
-}
 
-/* @keyframes hibouRotate {
-  from { transform: translateY(-50%) rotate(0deg); }
-  to   { transform: translateY(-50%) rotate(360deg); }
-}  */
 .hero-content {
   position: relative;
   z-index: 3;
@@ -515,10 +502,8 @@ section {
   object-fit: cover;
   object-position: center top;
   z-index: 2;
-  mix-blend-mode: screen;
-  filter: contrast(1.2) brightness(0.85) grayscale(20%);
-  /* mask-image: linear-gradient(to left, rgba(0,0,0,0.85) 40%, transparent 100%);
-  -webkit-mask-image: linear-gradient(to left, rgba(0,0,0,0.85) 40%, transparent 100%); */
+  mask-image: linear-gradient(to left, rgba(0,0,0,0.85) 40%, transparent 100%);
+  mask-image: linear-gradient(to left, rgba(0,0,0,0.85) 40%, transparent 100%);
 }
 
 /* ===== HISTOIRE ===== */
@@ -1215,9 +1200,8 @@ footer {
 }
 .footer-social a:hover { border-color: var(--rouge); color: var(--rouge); }
 
-.footer-bottom { display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 12px; padding-top: 24px; border-top: 1px solid var(--blanc-08); }
-.footer-legal { font-size: 11px; color: rgba(255,255,255,0.2); letter-spacing: 0.05em; }
-.footer-hibou { font-size: 11px; color: rgba(255,255,255,0.15); letter-spacing: 0.15em; text-transform: uppercase; }
+.footer-bottom { text-align: center; padding-top: 24px; border-top: 1px solid var(--blanc-08); }
+.footer-legal { font-size: 11px; color: rgba(255,255,255,0.5); letter-spacing: 0.05em; }
 
 /* ===== RESPONSIVE ===== */
 @media (max-width: 900px) {
