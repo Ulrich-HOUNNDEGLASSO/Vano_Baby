@@ -215,19 +215,7 @@ const TL_DATA = [
   { year: '2026', title: "10 ANS DU GANG — Le couronnement", text: "04 Avril 2026. Majestic de Wologuèdè. Dix ans de présence, de réinvention et de constance. Un concert-anniversaire historique que Cotonou n'oubliera jamais.",                                    featured: true  },
 ];
 
-/* ============================================================
-   CORRECTIONS À APPORTER DANS script.js
-   ============================================================
 
-   ÉTAPE 1 — Dans index.html, après la div #timeline, ajoute :
-
-   <div id="timeline-mobile"></div>
-
-   ============================================================
-
-   ÉTAPE 2 — Dans script.js, remplace la fonction buildTimeline()
-   entière par le code ci-dessous
-   ============================================================ */
 
 function buildTimeline() {
   const tl = document.getElementById('timeline');
@@ -277,14 +265,13 @@ function buildTimelineMobile() {
   const TOTAL_H    = MARGIN_TOP + TL_DATA.length * ENTRY_H + MARGIN_BOT;
 
   /* Positions X des sommets : alternance gauche / droite */
-  const SIDE_PAD = 16;
-  const TEXT_W   = W * 0.42;
+  const SIDE_PAD = 8;
   const DOT_R    = 8;
-  const GAP      = 12;
-
-  /* leftX / rightX = position X du point au sommet de la courbe */
-  const leftX  = SIDE_PAD + TEXT_W + GAP + DOT_R;
-  const rightX = W - SIDE_PAD - TEXT_W - GAP - DOT_R;
+  const GAP      = 8;
+  const cx       = W / 2;
+  const leftX    = cx - 20;
+  const rightX   = cx + 20;
+  const TEXT_W   = cx - SIDE_PAD - DOT_R - GAP - 8;
 
   /* Canvas */
   container.innerHTML = '';
@@ -353,13 +340,11 @@ function buildTimelineMobile() {
     ctx.textBaseline = 'middle';
 
     if (p.isLeft) {
-      /* Point à gauche → année encore plus à gauche */
       ctx.textAlign = 'right';
-      ctx.fillText(p.year, p.x - DOT_R - GAP, p.y);
+      ctx.fillText(p.year, SIDE_PAD + TEXT_W, p.y);
     } else {
-      /* Point à droite → année encore plus à droite */
       ctx.textAlign = 'left';
-      ctx.fillText(p.year, p.x + DOT_R + GAP, p.y);
+      ctx.fillText(p.year, W - SIDE_PAD - TEXT_W, p.y);
     }
 
     /* ===== TITRE (côté intérieur — dans le creux) ===== */
@@ -367,8 +352,9 @@ function buildTimelineMobile() {
     ctx.fillStyle = p.featured ? '#CC0000' : '#ffffff';
 
     const textX = p.isLeft
-      ? p.x + DOT_R + GAP        /* texte à droite du point */
-      : p.x - DOT_R - GAP;      /* texte à gauche du point */
+      ? p.x + DOT_R + GAP
+      : p.x - DOT_R - GAP;
+    ctx.textAlign = p.isLeft ? 'left' : 'right';
 
     ctx.textAlign    = p.isLeft ? 'left' : 'right';
     ctx.textBaseline = 'alphabetic';
@@ -463,10 +449,10 @@ function initMap() {
 
 /* ===== BILLETTERIE ===== */
 const TICKETS = [
-  { id: 'std',  name: 'Standard', price: 5000,   total: 30000, sold: 0, max: 50 },
+  { id: 'std',  name: 'Standard', price: 5000,   total: 30000, sold: 12000, max: 50 },
   { id: 'prem', name: 'Premium',  price: 15000,  total: 12000, sold: 0,  max: 30 },
-  { id: 'vip',  name: 'VIP',      price: 50000,  total: 6000,  sold: 0,  max: 15 },
-  { id: 'vvip', name: 'VVIP',     price: 100000, total: 2000,  sold: 0,  max: 10  },
+  { id: 'vip',  name: 'VIP',      price: 50000,  total: 6000,  sold: 3000,  max: 15 },
+  { id: 'vvip', name: 'VVIP',     price: 100000, total: 2000,  sold: 300,  max: 10 },
 ];
 
 function getBadge(t) {
@@ -498,40 +484,38 @@ function renderTickets() {
   TICKETS.forEach(t => {
     const qty   = state[t.id];
     const sub   = qty * t.price;
-    const left   = t.total - t.sold;
-    const badge  = getBadge(t);
-    const isFull = left <= 0;
+    const left  = t.total - t.sold;
     const pct   = Math.round((left / t.total) * 100);
     const color = gaugeColor(pct);
+    const badge = getBadge(t);
 
     const card  = document.createElement('div');
     card.className = 'ticket-card' + (qty > 0 ? ' active' : '');
 
     card.innerHTML = `
-      <div class="ticket-top">
-        <div class="ticket-left">
+      <div class="ticket-band"></div>
+      <div class="ticket-main">
+        <div class="ticket-info">
           <div class="ticket-name">${t.name}</div>
           <div class="ticket-price">${t.price.toLocaleString('fr-FR')} <span>FCFA / place</span></div>
           <span class="ticket-badge ${badge.cls}">${badge.label}</span>
-        </div>
-        <div style="display:flex;align-items:center;gap:16px;flex-wrap:wrap;">
-          <div class="ticket-controls">
-            <button class="qty-btn minus" onclick="changeQty('${t.id}', -1)">−</button>
-            <div class="qty-val">${qty}</div>
-            <button class="qty-btn plus"  onclick="changeQty('${t.id}',  1)">+</button>
+          <div class="gauge-wrap">
+            <div class="gauge-track">
+              <div class="gauge-fill" style="width:${pct}%;background:${color};"></div>
+            </div>
+            <div class="gauge-meta">
+              <span class="gauge-lbl">Places restantes</span>
+              <span class="gauge-count" style="color:${color}">${left.toLocaleString('fr-FR')} / ${t.total.toLocaleString('fr-FR')}</span>
+            </div>
           </div>
-          <div class="ticket-subtotal ${sub > 0 ? 'has' : ''}">${sub > 0 ? fmt(sub) : ''}</div>
         </div>
       </div>
-      <div class="gauge-wrap">
-        <div class="gauge-meta">
-          <span class="gauge-lbl">Places restantes</span>
-          <span class="gauge-count" style="color:${color}">${left.toLocaleString('fr-FR')} / ${t.total.toLocaleString('fr-FR')}</span>
-        </div>
-        <div class="gauge-track">
-          <div class="gauge-fill" style="width:${pct}%;background:${color};"></div>
-        </div>
-      </div>`;
+      <div class="ticket-controls">
+        <button class="qty-btn plus"  onclick="changeQty('${t.id}',  1)">+</button>
+        <div class="qty-val">${qty}</div>
+        <button class="qty-btn minus" onclick="changeQty('${t.id}', -1)">−</button>
+      </div>
+      <div class="ticket-subtotal">${sub > 0 ? fmt(sub) : ''}</div>`;
 
     grid.appendChild(card);
   });
