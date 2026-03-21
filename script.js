@@ -217,6 +217,8 @@ const TL_DATA = [
 
 
 
+
+
 function buildTimeline() {
   const tl = document.getElementById('timeline');
 
@@ -265,13 +267,14 @@ function buildTimelineMobile() {
   const TOTAL_H    = MARGIN_TOP + TL_DATA.length * ENTRY_H + MARGIN_BOT;
 
   /* Positions X des sommets : alternance gauche / droite */
-  const SIDE_PAD = 8;
+  const SIDE_PAD = 16;
+  const TEXT_W   = W * 0.42;
   const DOT_R    = 8;
-  const GAP      = 8;
-  const cx       = W / 2;
-  const leftX    = cx - 20;
-  const rightX   = cx + 20;
-  const TEXT_W   = cx - SIDE_PAD - DOT_R - GAP - 8;
+  const GAP      = 12;
+
+  /* leftX / rightX = position X du point au sommet de la courbe */
+  const leftX  = SIDE_PAD + TEXT_W + GAP + DOT_R;
+  const rightX = W - SIDE_PAD - TEXT_W - GAP - DOT_R;
 
   /* Canvas */
   container.innerHTML = '';
@@ -340,11 +343,13 @@ function buildTimelineMobile() {
     ctx.textBaseline = 'middle';
 
     if (p.isLeft) {
+      /* Point à gauche → année encore plus à gauche */
       ctx.textAlign = 'right';
-      ctx.fillText(p.year, SIDE_PAD + TEXT_W, p.y);
+      ctx.fillText(p.year, p.x - DOT_R - GAP, p.y);
     } else {
+      /* Point à droite → année encore plus à droite */
       ctx.textAlign = 'left';
-      ctx.fillText(p.year, W - SIDE_PAD - TEXT_W, p.y);
+      ctx.fillText(p.year, p.x + DOT_R + GAP, p.y);
     }
 
     /* ===== TITRE (côté intérieur — dans le creux) ===== */
@@ -352,9 +357,8 @@ function buildTimelineMobile() {
     ctx.fillStyle = p.featured ? '#CC0000' : '#ffffff';
 
     const textX = p.isLeft
-      ? p.x + DOT_R + GAP
-      : p.x - DOT_R - GAP;
-    ctx.textAlign = p.isLeft ? 'left' : 'right';
+      ? p.x + DOT_R + GAP        /* texte à droite du point */
+      : p.x - DOT_R - GAP;      /* texte à gauche du point */
 
     ctx.textAlign    = p.isLeft ? 'left' : 'right';
     ctx.textBaseline = 'alphabetic';
@@ -381,7 +385,7 @@ function buildTimelineMobile() {
         line   = words[w];
         lineY += 14;
         lineCount++;
-        if (lineCount >= 2) { ctx.fillText(line + '…', textX, lineY); break; }
+        if (lineCount >= 3) { ctx.fillText(line + '…', textX, lineY); break; }
       } else {
         line = test;
       }
@@ -389,6 +393,8 @@ function buildTimelineMobile() {
     if (lineCount < 2) ctx.fillText(line, textX, lineY);
   });
 }
+
+
 
 /* ===== VIDÉO FAN (lazy play) ===== */
 function initVideo() {
@@ -449,10 +455,10 @@ function initMap() {
 
 /* ===== BILLETTERIE ===== */
 const TICKETS = [
-  { id: 'std',  name: 'Standard', price: 5000,   total: 30000, sold: 12000, max: 50 },
-  { id: 'prem', name: 'Premium',  price: 15000,  total: 12000, sold: 0,  max: 30 },
-  { id: 'vip',  name: 'VIP',      price: 50000,  total: 6000,  sold: 3000,  max: 15 },
-  { id: 'vvip', name: 'VVIP',     price: 100000, total: 2000,  sold: 300,  max: 10 },
+  { id:'std',  name:'Standard', price:5000,   total:8200, sold:5048, max:20, color:'#CC0000' },
+  { id:'prem', name:'Premium',  price:15000,  total:1200, sold:320,  max:15, color:'#7B2FBE' },
+  { id:'vip',  name:'VIP',      price:50000,  total:500,  sold:322,  max:10, color:'#00A86B' },
+  { id:'vvip', name:'VVIP',     price:100000, total:100,  sold:22,   max:5,  color:'#FFB700' },
 ];
 
 function getBadge(t) {
@@ -460,8 +466,8 @@ function getBadge(t) {
   const pct  = (left / t.total) * 100;
 
   if (left <= 0)   return { cls: 'badge-sold',   label: 'Sold Out' };
-  if (pct <= 5)    return { cls: 'badge-last',   label: 'Dernières places' };
-  if (pct <= 25)   return { cls: 'badge-limite', label: 'Places limitées' };
+  if (pct <= 10)    return { cls: 'badge-last',   label: 'Dernières places' };
+  if (pct <= 35)   return { cls: 'badge-limite', label: 'Places limitées' };
   return           { cls: 'badge-dispo',  label: 'Disponible' };
 }
 
@@ -491,10 +497,9 @@ function renderTickets() {
 
     const card  = document.createElement('div');
     card.className = 'ticket-card' + (qty > 0 ? ' active' : '');
-
     card.innerHTML = `
-      <div class="ticket-band"></div>
-      <div class="ticket-main">
+      <div class="ticket-band" style="background:${t.color};"></div>
+      <div class="ticket-main" style="border: 1px solid rgba(${hexToRgb(t.color)}, 0.35); border-left: none;">
         <div class="ticket-info">
           <div class="ticket-name">${t.name}</div>
           <div class="ticket-price">${t.price.toLocaleString('fr-FR')} <span>FCFA / place</span></div>
@@ -521,6 +526,13 @@ function renderTickets() {
   });
 
   updateSummary();
+}
+
+function hexToRgb(hex) {
+  const r = parseInt(hex.slice(1,3), 16);
+  const g = parseInt(hex.slice(3,5), 16);
+  const b = parseInt(hex.slice(5,7), 16);
+  return `${r}, ${g}, ${b}`;
 }
 
 function changeQty(id, delta) {
@@ -644,10 +656,6 @@ const FAQ_DATA = [
     a: "Des billets pourront être disponibles sur place selon les stocks restants. Toutefois, nous recommandons fortement d'acheter en ligne à l'avance pour garantir votre place, les catégories VIP et VVIP étant très limitées."
   },
   {
-    q: "Y a-t-il un parking sur place ?",
-    a: "Oui, un parking est disponible sur place et aux abords du Majestic de Wologuèdè. Nous conseillons d'arriver tôt pour trouver facilement une place, notamment pour les catégories VIP et VVIP."
-  },
-  {
     q: "Quelle est la politique de remboursement ?",
     a: "Les billets ne sont pas remboursables sauf en cas d'annulation de l'événement. En cas de report, les billets restent valables pour la nouvelle date. Pour tout problème, contactez l'organisation directement."
   },
@@ -655,10 +663,7 @@ const FAQ_DATA = [
     q: "À quelle heure commence vraiment le concert ?",
     a: "Les portes ouvrent à 16h. Le concert de Vano Baby est programmé pour la soirée. Des artistes invités assureront les premières parties dès l'ouverture des portes. Arrivez tôt pour profiter de l'ambiance complète."
   },
-  {
-    q: "Y a-t-il de la restauration sur place ?",
-    a: "Oui, de la restauration et des boissons seront disponibles tout au long de l'événement. Vous trouverez des stands de nourriture et de boissons à différents points du site."
-  },
+
 ];
 
 function buildFAQ() {
