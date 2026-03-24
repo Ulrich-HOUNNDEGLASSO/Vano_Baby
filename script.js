@@ -203,16 +203,16 @@ function initCountUp() {
 
 /* ===== TIMELINE ===== */
 const TL_DATA = [
-  { year: '2016', title: "Le premier vrai hit",           text: "Adigoue Gboun Gboun devient un phénomène national. La posture provocatrice et la langue fon prennent le devant. Le public comprend : il n'est pas comme les autres.",                                featured: false },
-  { year: '2017', title: "L'installation du personnage",  text: "Figure récurrente du rap béninois. Multiples singles, premiers buzz viraux. Le début du mythe Azéto Gbèdé, le Sorcier Vivant.",                                                                      featured: false },
-  { year: '2018', title: "Le passage au mainstream",      text: "Morceaux plus accessibles, plus mélodiques. Il commence à toucher un public plus large, au-delà du rap pur. Les radios le diffusent largement.",                                                      featured: false },
-  { year: '2019', title: "Impossible à ignorer",          text: "Présence constante. Chaque single est un événement. Il accumule visibilité, showcases et collaborations. Son personnage s'affine : provocateur mais maîtrisé.",                                        featured: false },
-  { year: '2020', title: "La maturité artistique",        text: "Moins de vulgarité, plus de structure. La langue fon devient un atout pleinement assumé. Il se positionne comme ambassadeur culturel malgré lui.",                                                    featured: false },
-  { year: '2021', title: "Première consécration",         text: "Meilleur artiste de l'année aux Bénin Top 10 Awards. Il passe de star populaire à star reconnue. Un tournant dans sa carrière.",                                                                      featured: false },
-  { year: '2022', title: "Domination & ambassadeur",      text: "Encore Meilleur artiste de l'année. Il devient ambassadeur de la marque Celtiis : son image dépasse désormais la musique.",                                                                           featured: false },
-  { year: '2023', title: "La trajectoire internationale", text: "Tournées en Europe : Suisse, Italie. Il teste son potentiel hors du Bénin. Le public expatrié béninois adhère fortement.",                                                                            featured: false },
-  { year: '2024', title: "L'installation définitive",     text: "Encore Meilleur artiste de l'année. À ce stade, il n'est plus seulement un artiste : c'est une institution de la musique urbaine béninoise.",                                                         featured: false },
-  { year: '2026', title: "10 ANS DU GANG — Le couronnement", text: "04 Avril 2026. Majestic de Wologuèdè. Dix ans de présence, de réinvention et de constance. Un concert-anniversaire historique que Cotonou n'oubliera jamais.",                                    featured: true  },
+  { year: '2016', title: "Le premier vrai hit",           text: "Adigoue Gboun Gboun devient un phénomène national.",                                featured: false },
+  { year: '2017', title: "L'installation du personnage",  text: "Multiples singles, premiers buzz viraux. Le début du mythe Azéto Gbèdé, le Sorcier Vivant.",                                                                      featured: false },
+  { year: '2018', title: "Le passage au mainstream",      text: "Morceaux plus accessibles, plus mélodiques.",                                                      featured: false },
+  { year: '2019', title: "Impossible à ignorer",          text: "Il accumule visibilité, showcases et collaborations.",                                        featured: false },
+  { year: '2020', title: "La maturité artistique",        text: "Moins de vulgarité, plus de structure. Il se positionne comme ambassadeur culturel malgré lui.",                                                    featured: false },
+  { year: '2021', title: "Première consécration",         text: "Meilleur artiste de l'année aux Bénin Top 10. Un tournant dans sa carrière.",                       featured: false },
+  { year: '2022', title: "Domination & ambassadeur",      text: "Encore Meilleur artiste de l'année. Il devient ambassadeur de la marque Celtiis.",                                                                           featured: false },
+  { year: '2023', title: "La trajectoire internationale", text: "Tournées en Europe. Le public hors béninois adhère fortement.",                                                                            featured: false },
+  { year: '2024', title: "L'installation définitive",     text: "Encore Meilleur artiste de l'année. À ce stade, il devient une institution de la musique urbaine béninoise.",                                                         featured: false },
+  { year: '2026', title: "10 ANS DU GANG : Le couronnement", text: "04 Avril 2026. Majestic de Wologuèdè. Dix ans de présence, de réinvention et de constance. Un concert-anniversaire historique que Cotonou n'oubliera jamais.",                                    featured: true  },
 ];
 
 
@@ -261,7 +261,7 @@ function buildTimelineMobile() {
   const dpr     = window.devicePixelRatio || 1;
 
   /* Layout */
-  const ENTRY_H    = 92;
+  const ENTRY_H    = 120;
   const MARGIN_TOP = 24;
   const MARGIN_BOT = 24;
   const TOTAL_H    = MARGIN_TOP + TL_DATA.length * ENTRY_H + MARGIN_BOT;
@@ -385,12 +385,11 @@ function buildTimelineMobile() {
         line   = words[w];
         lineY += 14;
         lineCount++;
-        if (lineCount >= 3) { ctx.fillText(line + '…', textX, lineY); break; }
       } else {
         line = test;
       }
     }
-    if (lineCount < 2) ctx.fillText(line, textX, lineY);
+    ctx.fillText(line, textX, lineY);
   });
 }
 
