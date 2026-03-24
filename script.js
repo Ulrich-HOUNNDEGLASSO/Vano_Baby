@@ -212,7 +212,7 @@ const TL_DATA = [
   { year: '2022', title: "Domination & ambassadeur",      text: "Encore Meilleur artiste de l'année. Il devient ambassadeur de la marque Celtiis.",                                                                           featured: false },
   { year: '2023', title: "La trajectoire internationale", text: "Tournées en Europe. Le public hors béninois adhère fortement.",                                                                            featured: false },
   { year: '2024', title: "L'installation définitive",     text: "Encore Meilleur artiste de l'année. À ce stade, il devient une institution de la musique urbaine béninoise.",                                                         featured: false },
-  { year: '2026', title: "10 ANS DU GANG : Le couronnement", text: "04 Avril 2026. Majestic de Wologuèdè. Dix ans de présence, de réinvention et de constance. Un concert-anniversaire historique que Cotonou n'oubliera jamais.",                                    featured: true  },
+  { year: '2026', title: "10 ANS DU GANG : Le couronnement", text: "04 Avril 2026. Majestic de Wologuèdè. Dix ans de présence, de réinvention et de constance.",                                    featured: true  },
 ];
 
 
